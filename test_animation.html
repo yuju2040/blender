@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial=1.0">
+    <title>Blender Animation Test</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column; /* Arrange items vertically */
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        model-viewer {
+            width: 80%;
+            height: 80%;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px; /* Space between model and buttons */
+        }
+        .controls {
+            display: flex;
+            gap: 10px; /* Space between buttons */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <model-viewer
+        id="animation-viewer"
+        src="test_animation.glb"
+        alt="A 3D model from Blender"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        camera-controls
+        auto-rotate
+        shadow-intensity="1"
+        autoplay
+    >
+    </model-viewer>
+
+    <div class="controls">
+        <button onclick="playAnimation('Idle')">Play Idle</button>
+        <button onclick="playAnimation('Walk')">Play Walk</button>
+        <button onclick="playAnimation('Walking')">Play Walking</button>
+    </div>
+
+    <script>
+        const modelViewer = document.querySelector('#animation-viewer');
+        function playAnimation(animationName) {
+            modelViewer.animationName = animationName;
+            modelViewer.play();
+        }
+    </script>
+</body>
+</html>
